@@ -1,0 +1,21 @@
+version: "3.7"
+
+networks:
+  mz_bridge:
+    external: true
+
+services:
+
+  mysql_pulsar:
+    image: mysql:8
+    container_name: mz-mysql
+    restart: unless-stopped
+    ports:
+      - "6033:3306"
+    environment:
+      MYSQL_DATABASE: laravel
+      MYSQL_ROOT_PASSWORD: '#tWM1dKA'
+    volumes:
+      - ../mz_dbdata:/var/lib/mysql
+    networks:
+      - mz_bridge
